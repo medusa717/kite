@@ -12,7 +12,7 @@ import {
 } from 'recharts'
 
 import { UsageDataPoint } from '@/types/api'
-import { formatChartXTicks } from '@/lib/utils'
+import { formatChartXTicks, formatDate } from '@/lib/utils'
 
 import { Alert, AlertDescription } from '../ui/alert'
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card'
@@ -74,7 +74,7 @@ const NetworkUsageChart = React.memo((prop: NetworkUsageChartProps) => {
       combinedData.set(timestamp, {
         timestamp: point.timestamp,
         time: timestamp,
-        networkIn: -Math.max(0, point.value), // Convert to negative for below X-axis
+        networkIn: Math.max(0, point.value), // Convert to negative for below X-axis
       })
     })
 
@@ -201,6 +201,7 @@ const NetworkUsageChart = React.memo((prop: NetworkUsageChartProps) => {
               axisLine={false}
               tickMargin={8}
               minTickGap={32}
+              allowDataOverflow={true}
               tickFormatter={(value) => formatChartXTicks(value, isSameDay)}
             />
             <YAxis
@@ -213,7 +214,7 @@ const NetworkUsageChart = React.memo((prop: NetworkUsageChartProps) => {
               cursor={false}
               content={
                 <ChartTooltipContent
-                  labelFormatter={(value) => formatChartXTicks(value, false)}
+                  labelFormatter={(value) => formatDate(value)}
                   formatter={(value, name) => [
                     <div key="indicator" className="flex items-center gap-2">
                       <div
@@ -235,6 +236,7 @@ const NetworkUsageChart = React.memo((prop: NetworkUsageChartProps) => {
               }
             />
             <Area
+              isAnimationActive={false}
               dataKey="networkOut"
               type="monotone"
               fill="url(#fillNetworkOut)"
@@ -243,6 +245,7 @@ const NetworkUsageChart = React.memo((prop: NetworkUsageChartProps) => {
               dot={false}
             />
             <Area
+              isAnimationActive={false}
               dataKey="networkIn"
               type="monotone"
               fill="url(#fillNetworkIn)"
