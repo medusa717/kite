@@ -1,182 +1,192 @@
-# Kite - Modern Kubernetes Dashboard
+# 🪁 Kite — Modern Kubernetes Dashboard
 
-<div align="center">
+**A lightweight, modern Kubernetes management platform for multi-cluster operations, observability, resource management, security, and AI-assisted workflows.**
 
-<img src="./docs/assets/logo.svg" alt="Kite Logo" width="128" height="128">
+Kite provides a unified web interface for managing Kubernetes infrastructure without relying entirely on `kubectl`. It combines cluster administration, live resource monitoring, YAML editing, logs, terminals, Helm management, access control, and AI-assisted operations in a single workspace.
 
-_A modern Kubernetes dashboard_
+## ✨ Key Capabilities
 
-<a href="https://trendshift.io/repositories/21820" target="_blank"><img src="https://trendshift.io/api/badge/repositories/21820" alt="kite-org%2Fkite | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a>
+* **Multi-Cluster Management** — Connect and switch between multiple Kubernetes clusters.
+* **Resource Management** — Manage Pods, Deployments, Services, ConfigMaps, Secrets, Nodes, PVs, PVCs, CRDs, and more.
+* **Live YAML Editor** — Inspect and modify Kubernetes resources using a Monaco-based editor.
+* **Observability** — Monitor CPU, memory, network, events, and Prometheus metrics.
+* **Pod Logs** — Stream and search live container logs.
+* **Web Terminal** — Execute commands directly inside pods and nodes.
+* **Helm Management** — Discover, install, upgrade, rollback, and manage Helm releases.
+* **AI Assistant** — Interact with Kubernetes environments through AI-assisted workflows.
+* **Kube Proxy** — Access pods and services without manually configuring `kubectl port-forward`.
+* **Security & Governance** — OAuth, MFA, passkeys, RBAC, user management, and audit capabilities.
+* **Responsive UI** — Desktop, tablet, and mobile-friendly interface with theme support.
+* **Internationalization** — English and Chinese language support.
 
-<a href="https://github.com/kite-org/kite/stargazers"><img src="https://img.shields.io/github/stars/kite-org/kite?color=ffcb47&labelColor=black&style=flat-square&logo=github&label=Stars" /></a>
-<a href="https://github.com/kite-org/kite/releases"><img src="https://img.shields.io/github/downloads/kite-org/kite/total?color=369eff&labelColor=black&logo=github&style=flat-square&label=Downloads" /></a>
-<a href="https://github.com/kite-org/kite/graphs/contributors"><img src="https://img.shields.io/github/contributors/kite-org/kite?style=flat-square&logo=github&label=Contributors&labelColor=black" /></a>
-[![License](https://img.shields.io/badge/License-Apache-green.svg)](LICENSE)
-<a href="https://join.slack.com/t/kite-dashboard/shared_invite/zt-3cl9mccs7-eQZ1_t6IoTPHZkxXED1ceg"><img alt="Join Kite" src="https://badgen.net/badge/Slack/Join%20Kite/0abd59?icon=slack" /></a>
+## 🏗️ Architecture
 
+```text
+                    ┌─────────────────────┐
+                    │      Web UI         │
+                    │  React / TypeScript │
+                    └──────────┬──────────┘
+                               │
+                               ▼
+                    ┌─────────────────────┐
+                    │   Kite API Server   │
+                    │        Go           │
+                    └──────────┬──────────┘
+                               │
+              ┌────────────────┼────────────────┐
+              │                │                │
+              ▼                ▼                ▼
+       ┌────────────┐   ┌────────────┐   ┌────────────┐
+       │ Kubernetes │   │ Prometheus │   │   Storage  │
+       │   API      │   │  Metrics   │   │ / Database │
+       └────────────┘   └────────────┘   └────────────┘
+              │
+              ▼
+       ┌────────────────┐
+       │ Cluster / Pods  │
+       │ Services / CRDs │
+       └────────────────┘
+```
 
-[**Live Demo**](https://kite-demo.zzde.me) | [**Documentation**](https://kite.zzde.me)
-<br>
-**English** | [中文](./README_zh.md)
+## 🛠️ Technology Stack
 
-</div>
+### Backend
 
-Kite is a lightweight, modern Kubernetes dashboard that unifies real-time observability, multi-cluster and resource management, enterprise-grade user governance (OAuth, MFA, passkeys, RBAC, and audit logs), and AI agents in one workspace. Not just a tool, but more like a platform.
+* Go
+* Kubernetes API
+* REST APIs
+* Kubernetes client libraries
+* Prometheus integration
 
-<img width="1586" height="1167" alt="image" src="https://github.com/user-attachments/assets/5710204d-5d34-44af-85dc-3b436e205c12" />
+### Frontend
 
-## ✨ Features
+* TypeScript
+* React
+* Modern component-based UI
+* Monaco Editor
+* Responsive dashboard architecture
 
-### User Interface
+### Infrastructure
 
-- Dark/light/color themes with system preference detection
-- Global search across all resources
-- Responsive design for desktop, tablet, and mobile
-- i18n support (English and Chinese)
-
-### Multi-Cluster Management
-
-- Switch between multiple Kubernetes clusters
-- Independent Prometheus configuration per cluster
-- Automatic discovery from kubeconfig
-- Fine-grained cluster access permissions
-
-### Resource Management
-
-- Full coverage: Pods, Deployments, Services, ConfigMaps, Secrets, PVs, PVCs, Nodes, and more
-- Live YAML editing with Monaco editor (syntax highlighting and validation)
-- Detailed views with containers, volumes, events, and conditions
-- Resource relationships (e.g., Deployment → Pods)
-- Create, update, delete, scale, and restart operations
-- Custom Resource Definitions (CRDs) support
-- Quick image tag selector using Docker and container registry APIs
-- Helm chart discovery, install, upgrade, rollback, and release management
-- Customizable sidebar with CRD shortcuts
-- Kube proxy for direct pod/service access (no more `kubectl port-forward`)
-
-### Monitoring & Observability
-
-- Real-time CPU, memory, and network charts (Prometheus)
-- Live pod logs with filtering and search
-- Web terminal for pods and nodes
-- Built-in kubectl console.
-- AI assistant.
+* Kubernetes
+* Docker
+* Helm
+* Docker Compose
+* OCI container images
+* Prometheus
 
 ### Security
 
-- OAuth integration
-- MFA for password users
-- Passkey login
-- Role-based access control
-- User management and role allocation
+* OAuth
+* MFA
+* Passkeys
+* RBAC
+* User and role management
+* Audit logging
 
----
+### AI
 
-## 🚀 Quick Start
+* AI-assisted Kubernetes operations
+* AI assistant workflows
+* Agent/tool integration
+* Kubernetes-aware context
 
-For detailed instructions, please refer to the [documentation](https://kite.zzde.me/guide/installation.html).
-
-### Docker
+## 🚀 Running with Docker
 
 ```bash
-docker run -d -p 8080:8080 -v ./data:/data -e DB_DSN=/data/db.sqlite ghcr.io/kite-org/kite:latest
+docker run -d \
+  -p 8080:8080 \
+  -v ./data:/data \
+  -e DB_DSN=/data/db.sqlite \
+  ghcr.io/kite-org/kite:latest
 ```
 
-### Deploy in Kubernetes
+Open:
 
-#### Using Helm (Recommended)
+```text
+http://localhost:8080
+```
 
-1. **Install from OCI registry**
+## ☸️ Kubernetes Deployment
 
-   ```bash
-   helm install kite oci://ghcr.io/kite-org/charts/kite -n kube-system
-   ```
+Using Helm:
 
-2. **Or install from Helm repository**
+```bash
+helm install kite \
+  oci://ghcr.io/kite-org/charts/kite \
+  -n kube-system
+```
 
-   ```bash
-   helm repo add kite https://kite-org.github.io/kite/
-   helm repo update
-   helm install kite kite/kite -n kube-system
-   ```
+Or:
 
-#### Using kubectl
+```bash
+helm repo add kite https://kite-org.github.io/kite/
+helm repo update
+helm install kite kite/kite -n kube-system
+```
 
-1. **Apply deployment manifests**
+Access through port forwarding:
 
-   ```bash
-   kubectl apply -f deploy/install.yaml
-   # or install it online
-   # Note: This method may not be suitable for a production environment, as it does not include any configuration related to persistence. You will need to manually mount the persistence volume and set the environment variable DB_DSN=/data/db.sqlite to ensure that data is not lost. Alternatively, an external database can be used.
-   # ref: https://kite.zzde.me/faq.html#persistence-issues
-   kubectl apply -f https://raw.githubusercontent.com/kite-org/kite/refs/heads/main/deploy/install.yaml
-   ```
+```bash
+kubectl port-forward \
+  -n kube-system \
+  svc/kite \
+  8080:8080
+```
 
-2. **Access via port-forward**
+## 💻 Development
 
-   ```bash
-   kubectl port-forward -n kube-system svc/kite 8080:8080
-   ```
+```bash
+git clone https://github.com/kite-org/kite.git
+cd kite
 
-### Build from Source
+make deps
+make build
+make run
+```
 
-1. **Clone the repository**
+## 🔧 Engineering Areas
 
-   ```bash
-   git clone https://github.com/kite-org/kite.git
-   cd kite
-   ```
+This project is particularly interesting from an engineering perspective because it brings together several production infrastructure concerns:
 
-2. **Build the project**
+* Kubernetes API integration
+* Multi-cluster resource abstraction
+* Real-time infrastructure observability
+* Secure administrative workflows
+* RBAC and authentication
+* YAML-based infrastructure management
+* Helm lifecycle automation
+* Container and pod operations
+* Prometheus metrics
+* AI-assisted infrastructure management
+* Responsive frontend architecture
+* Self-hosted deployment
 
-   ```bash
-   make deps
-   make build
-   ```
+## 🎯 Why Kite?
 
-3. **Run the server**
+Traditional Kubernetes workflows often require switching between dashboards, terminals, monitoring systems, and deployment tools.
 
-   ```bash
-   make run
-   ```
+Kite brings these workflows together into a single operational interface:
 
----
+```text
+Cluster
+   │
+   ├── Resources
+   ├── Workloads
+   ├── Logs
+   ├── Metrics
+   ├── Events
+   ├── Terminal
+   ├── YAML
+   ├── Helm
+   ├── Security
+   └── AI Assistant
+```
 
-## 🔍 Troubleshooting
+## 📌 Project Focus
 
-For troubleshooting, please refer to the [documentation](https://kite.zzde.me).
-
-## 💖 Support This Project
-
-If you find Kite helpful, please consider supporting its development! Your donations help maintain and improve this project.
-
-### Donation Methods
-
-<table>
-  <tr>
-    <td align="center">
-      <b>Alipay</b><br>
-      <img src="./docs/donate/alipay.jpeg" alt="Alipay QR Code" width="200">
-    </td>
-    <td align="center">
-      <b>WeChat Pay</b><br>
-      <img src="./docs/donate/wechat.jpeg" alt="WeChat Pay QR Code" width="200">
-    </td>
-    <td align="center">
-      <b>PayPal</b><br>
-      <a href="https://www.paypal.me/zxh326">
-        <img src="https://www.paypalobjects.com/webstatic/mktg/logo/pp_cc_mark_111x69.jpg" alt="PayPal" width="150">
-      </a>
-    </td>
-  </tr>
-</table>
-
-Thank you for your support! ❤️
-
-## 🤝 Contributing
-
-We welcome contributions! Please see our [contributing guidelines](./CONTRIBUTING.md) for details on how to get involved.
+**Cloud Native · Kubernetes · Go · TypeScript · React · DevOps · Observability · RBAC · Helm · AI Agents**
 
 ## 📄 License
 
-This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details.
+Apache License 2.0.
